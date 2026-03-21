@@ -1,59 +1,139 @@
 # AngularZeroToHero
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
+### This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
 
-## Development server
+This guide provides step-by-step instructions for creating a new angular 19 project with complte Zero to One practical study guide.
 
-To start a local development server, run:
+## Table of Contents
 
-```bash
-ng serve
-```
+1. [Step-00: Prerequisites](#step-0-prerequisites)
+2. [Step-01: Create An Angular Project](#step-01-create-an-angular-project)
+3. [Step-02: Install Third Party Packages And Configurations](#step-02-install-third-party-packages-and-configurations)
+4. [Step-03: Install Or Configure The Theme](#step-03-install-or-configure-the-theme)
+5. [Step-04: Create Core Components For Home Page](#step-04-create-core-components-for-home-page)
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## Step-0: Prerequisites
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Before starting, ensure you have:
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+- Node.js v22 or higher installed
+- npm installed
+- NodeJS download & setup:  [Download node](https://nodejs.org/en)
+- Angular Download & setup: [Angular official](https://angular.dev/)
 
 ```bash
-ng build
+node -v        # >= 22.x recommended 
+npm -v 
+
+npm install -g @angular/cli@19  #Install Angular CLI 19 globally
+ng version  #Verify the version 
 ```
+---
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Step-01: Create An Angular Project
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- Generate/Create an angular application
 
 ```bash
-ng test
+ng new AngularZeroToHero
+
+cd : AngularZeroToHero
+ng serve #ng s or npm run start
 ```
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+### Step-02: Install Third Party Packages And Configurations
+- Install the Bootstrap 5
 
 ```bash
-ng e2e
+npm install bootstrap@5
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+- Install the Fontawsome free verion 6
 
-## Additional Resources
+```bash  
+npm install @fortawesome/fontawesome-free@6 
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Update `angular.json` file with Bootstrap & fontawsome modules path.
+
+```json
+"styles": [ 
+  "node_modules/bootstrap/dist/css/bootstrap.min.css", 
+  "node_modules/@fortawesome/fontawesome-free/css/all.min.css", 
+  "src/styles.css" 
+] 
+
+"scripts": [
+  "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" 
+] 
+```
+
+- Use the Google Lato fonts & add the font entries in `index.html` file. We can add it on our global css file also.
+
+```html
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+```
+---
+
+### Step-03: Install Or Configure The Theme
+
+- There are multiple options for angular theming i.e: 
+- PrimeNG - https://primeng.org/templates
+- Material Theme - https://material.angular.dev/guide/theming 
+- Bootstrap Theme - https://getbootstrap.com/docs/4.1/getting-started/theming/ 
+- Our own cusom Theme
+
+**Note:** 
+- In this Tutorial we are using bootstrep 5 with our custom Theme/Template.
+---
+
+### Step-04: Create Core Components For Home Page
+
+- Generate the core compoents for the Home Page
+- The App structure will be like 1.Header <--> 2. Layout(Side nav + main conatins) <--> 3. Footer
+
+```bash
+ng g c header
+ng g c layout
+ng g c footer
+```
+
+- add the selectores entries on app compoenets
+
+```html
+<app-header></app-header>
+<app-layout></app-layout>
+<app-footer></app-footer>
+```
+
+- Inside layout component create 2 more components
+
+```bash
+ng g c side-nav-bar
+ng g c main-content
+```
+
+- Update layout componet html
+
+```html
+<section class="app-body-wrapper">
+
+    <div class="container app-body-contains">
+        <app-side-nav-bar></app-side-nav-bar>
+        <app-main-content></app-main-content>
+    </div>
+
+</section>
+```
+
+- In `<app-main-content></app-main-content>` component use the `<router-outlet></router-outlet>` to load other components using router.
+
+- Build Reusable  `<app-page-title></app-page-title>` component & use it in other all component.
+---
+

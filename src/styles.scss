@@ -1,1 +1,303 @@
-/* You can add global styles to this file, and also import other style files */
+/* =========================================================
+   ROOT + BASE
+========================================================= */
+:root {
+    --angular-red: #dd0031;
+    --angular-dark: #b8002a;
+  
+    /*fonts*/
+    --font-primary: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-lato: "Lato", Helvetica, Arial, sans-serif;
+  
+    /*colors*/
+    --color-bg-body: #f8f4ed;
+    --color-bg-white: #ffffff;
+    --color-text-grey: #272727;
+    --color-nav-hover: #e5e5e5;
+    --color-nav-item-disabled: #bcbec0;
+  }
+  
+  body {
+    font-family: var(--font-primary);
+    background-color: var(--color-bg-body);
+    font-weight: 400;
+    margin: 0;
+  }
+  
+  /* =========================================================
+     HEADER & FOOTER
+  ========================================================= */
+  .app-header {
+    background-color: var(--angular-red);
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+  }
+  
+  .header-nav-link {
+    background-color: var(--angular-red);
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .header-nav-link:hover {
+    opacity: 0.7;
+  }
+  
+  .app-footer-bg {
+    background-color: var(--angular-red);
+  }
+  
+  .app-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    color: var(--color-bg-white);
+  }
+  
+  /* =========================================================
+     LAYOUT
+  ========================================================= */
+  .app-body-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 24px 0;
+  }
+  
+  .app-body-contains {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .content {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+  }
+  
+  /* =========================================================
+     1. SIDE NAV BAR
+  ========================================================= */
+  .sidebar {
+    display: flex;
+    justify-content: center;
+    background: var(--color-bg-white);
+    width: 100px;
+    margin: 0px 24px;
+    padding: 1px 32px;
+    border-radius: 15px;
+    box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.25);
+  }
+  
+  .sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    list-style: none;
+    text-align: center;
+    padding: 8px 0;
+    margin: 0;
+  }
+  
+  .sidebar-menu li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 4px;
+    cursor: pointer;
+  }
+  
+  .sidebar-menu li:hover:not(.disabled),
+  .sidebar-menu li.active {
+    background: var(--color-nav-hover);
+    border-radius: 5px;
+  }
+  
+  .nav-vertical {
+    display: flex;
+    flex-direction: column; /* icon on top, text below */
+    align-items: center; /* center horizontally */
+    justify-content: center;
+    gap: 4px; /* space between icon & text */
+    padding: 8px 0;
+  }
+  
+  .nav-vertical i {
+    font-size: 16px;
+    color: var(--angular-red);
+  }
+  
+  .nav-vertical span {
+    font-size: 13px;
+    font-family: var(--font-lato);
+    font-weight: 700;
+    color: var(--angular-red);
+  }
+  
+  .nav-vertical.active {
+    background: var(--color-nav-hover);
+  }
+  
+  /* =========================================================
+     2. CONTENT CARD
+  ========================================================= */
+  .content-card {
+    background: var(--color-bg-white);
+    border-radius: 15px;
+    padding: 32px;
+    box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.25);
+    margin: 0px 4px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* =========================================================
+     Page Title & Subtitle
+  ========================================================= */
+  .content-title {
+    font-family: var(--font-lato);
+    color: var(--color-text-grey);
+    font-weight: 900;
+    color: var(--angular-red);
+  }
+  
+  .content-subtitle {
+    font-family: var(--font-primary);
+    color: var(--color-text-grey);
+    font-size: 1.125rem;
+    line-height: 1.5;
+    margin: 0 0 2rem 0;
+  }
+  
+  /* =========================================================
+  Home component CARDS
+  ========================================================= */
+  .topic-list li {
+    padding: 6px 0;
+    border-bottom: 1px dashed #dee2e6;
+  }
+  
+  .topic-list li:last-child {
+    border-bottom: none;
+  }
+  
+  .topic-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease;
+  }
+  
+  .topic-card .card-body {
+    flex: 1;
+  }
+  
+  .topic-card:hover {
+    transform: translateY(-4px);
+  }
+  
+  .topic-title {
+    color: #b8002a;
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+  
+  .subtopic-list li {
+    padding: 6px 0;
+    border-bottom: 1px dashed #dee2e6;
+    font-size: 0.95rem;
+  }
+  
+  .subtopic-list li:last-child {
+    border-bottom: none;
+  }
+  .row.g-4 {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  /* =========================================================
+  2. Overview Component
+  ========================================================= */
+  .highlight-box,
+  .info-box {
+    background: #fff3f5;
+    border-left: 4px solid #dd0031;
+    padding: 12px;
+    border-radius: 6px;
+  }
+  /* =========================================================
+  
+  ========================================================= */
+  .section-card {
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+  .section-title {
+    color: #dd0031;
+    font-weight: 700;
+  }
+  /* =========================================================
+  ttt
+  ========================================================= */
+  
+  /* =========================================================
+  RESPONSIVE
+  ========================================================= */
+  
+  /* Tablet */
+  @media (max-width: 991px) {
+    .content-card {
+      padding: 24px;
+    }
+  
+    .topic-title {
+      font-size: 1.1rem;
+    }
+  }
+  
+  /* Mobile */
+  
+  @media (max-width: 767px) {
+    /* 1. Hide side bar menu*/
+    .sidebar {
+      display: none;
+    }
+  
+    .app-body-contains {
+      width: 100%;
+    }
+  
+    .content {
+      width: 100%;
+    }
+  
+    //card section
+  
+    .content-card {
+      padding: 16px;
+    }
+  
+    .content-title {
+      font-size: 1.3rem;
+    }
+  
+    .content-subtitle {
+      font-size: 1rem;
+    }
+  
+    .subtopic-list li {
+      font-size: 0.9rem;
+    }
+  }
+  

@@ -1,0 +1,167 @@
+<main class="content">
+
+    <div class="content-card">
+        <!-- Heading  -->
+
+        <app-page-title [pageTitle]="heading()" [pageSubtitle]="subHeading()">
+        </app-page-title>
+
+        <!-- 1. Component Architecture -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">1. Component Architecture & Lifecycle Hooks</h3>
+                <p>
+                    Angular applications are built using <strong>components</strong>. A component controls a part of the
+                    UI
+                    and consists of:
+                </p>
+                <ul>
+                    <li>HTML template (view)</li>
+                    <li>TypeScript class (logic)</li>
+                    <li>CSS styles (presentation)</li>
+                </ul>
+                <p>
+                    Angular components follow a <strong>lifecycle</strong> managed by the framework. Lifecycle hooks
+                    allow
+                    developers to execute logic at specific moments.
+                </p>
+                <div class="highlight-box mb-3">
+                    Common lifecycle hooks:
+                    <ul class="mb-0">
+                        <li>ngOnInit()</li>
+                        <li>ngOnChanges()</li>
+                        <li>ngAfterViewInit()</li>
+                        <li>ngOnDestroy()</li>
+                    </ul>
+                </div>
+
+                <h4>Example:</h4>
+                <a class="text-danger" routerLink="/life-cycle" routerLinkActive="active" class="btn btn-danger">Life
+                    cycle demo</a>
+
+            </div>
+        </div>
+
+        <!-- 2. Template Syntax -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">2. Template Syntax & Data Binding</h3>
+                <p>
+                    Angular templates use a powerful syntax to bind data between the component class and the view.
+                </p>
+                <ul>
+                    <li><strong>Interpolation</strong> – Display values (bind data from ts file to html file)</li>
+                    <li><strong>Property binding</strong> – Bind DOM properties</li>
+                    <li><strong>Event binding</strong> – Listen to user actions</li>
+                </ul>
+                <p>
+                    This binding system ensures the UI stays in sync with application state.
+                </p>
+                <h4>Example:</h4>
+                <a routerLink="/data-binding" class="btn btn-danger">Data Binding</a>
+            </div>
+        </div>
+
+        <!-- 3. Event & Two-way Binding -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">3. Event Handling & Two-Way Binding</h3>
+                <p>
+                    Event binding allows Angular applications to react to user interactions such as clicks,
+                    keyboard input, and form submissions.
+                </p>
+                <p>
+                    <strong>Two-way binding</strong> synchronizes data between the component and template using
+                    <code>[(ngModel)]</code>
+                    or signal-based approaches.
+                </p>
+                <div class="highlight-box">
+                    Use cases:
+                    <ul class="mb-0">
+                        <li>Forms</li>
+                        <li>Search inputs</li>
+                        <li>Dynamic UI updates</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Component Communication -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">4. Component Communication (Input & Output)</h3>
+                <p>
+                    Angular supports communication between parent and child components using decorators.
+                </p>
+                <ul>
+                    <li><strong>&#64;Input()</strong> – Pass data from parent to child</li>
+                    <li><strong>&#64;Output()</strong> – Emit events from child to parent</li>
+                </ul>
+                <p>
+                    This pattern ensures components remain <strong>loosely coupled</strong> and reusable.
+                </p>
+            </div>
+        </div>
+
+        <!-- 5. Standalone & Reusable -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">5. Standalone & Reusable Components</h3>
+                <p>
+                    Standalone components remove the dependency on NgModules, simplifying application structure.
+                </p>
+                <p>
+                    Reusable components encapsulate UI and logic so they can be used across multiple screens.
+                </p>
+                <div class="highlight-box">
+                    Benefits:
+                    <ul class="mb-0">
+                        <li>Cleaner architecture</li>
+                        <li>Better performance</li>
+                        <li>Easier maintenance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Counter App -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">6. Counter Application</h3>
+                <p>
+                    A counter application is a common beginner project that demonstrates:
+                </p>
+                <ul>
+                    <li>State management</li>
+                    <li>Event binding</li>
+                    <li>Template updates</li>
+                </ul>
+                <p>
+                    It is often used to introduce best practices for component structure.
+                </p>
+
+            </div>
+        </div>
+
+        <!-- 7. Decorators -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">7. Decorators & Control Flow</h3>
+                <p>
+                    Decorators provide metadata that tells Angular how to process classes and properties.
+                </p>
+                <ul>
+                    <li><strong>&#64;Component</strong> – Defines a component</li>
+                    <li><strong>&#64;Input / &#64;Output</strong> – Component communication</li>
+                    <li><strong>&#64;if, &#64;else, &#64;for, &#64;switch</strong> – Modern template control flow</li>
+                </ul>
+                <p>
+                    The new control flow syntax improves readability and performance compared to older structural
+                    directives.
+                </p>
+
+            </div>
+        </div>
+
+    </div>
+</main>
