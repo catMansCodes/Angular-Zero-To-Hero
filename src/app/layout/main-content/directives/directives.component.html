@@ -1,0 +1,192 @@
+<main class="content">
+
+    <div class="content-card">
+
+        <app-page-title [pageTitle]="heading()" [pageSubtitle]="subHeading()">
+        </app-page-title>
+
+        <!-- 1. Overview -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">
+                    <i class="fa fa-layer-group me-2 text-danger" aria-hidden="true"></i>1. Directives overview
+                </h3>
+                <p class="mb-2">
+                    Directives are instructions in Angular templates that <strong>change the DOM</strong>, appearance, or
+                    behavior. They extend HTML with Angular-specific syntax.
+                </p>
+                <div class="border border-secondary-subtle rounded-3 p-3 bg-body-tertiary" role="note">
+                    <div class="fw-semibold mb-2"><i class="fa fa-list-ul me-2 text-danger"></i>Three common categories</div>
+                    <ul class="mb-0 ps-3">
+                        <li><strong>Structural</strong> — add/remove DOM (<code>*ngIf</code>, <code>*ngFor</code>, <code>*ngSwitch</code>)</li>
+                        <li><strong>Attribute</strong> — change element behavior or style (<code>ngClass</code>, <code>ngStyle</code>)</li>
+                        <li><strong>Custom</strong> — your own attribute or structural directives</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Built-in structural -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">
+                    <i class="fa fa-code-branch me-2 text-danger" aria-hidden="true"></i>2. Built-in structural directives
+                </h3>
+                <p class="text-muted small mb-3">Classic syntax uses the <code>*</code> prefix (syntactic sugar for
+                    <code>&lt;ng-template&gt;</code>).</p>
+
+                <div class="border border-secondary-subtle rounded-3 p-3 bg-body-tertiary mb-4">
+                    <h4 class="h6 fw-bold mb-3"><i class="fa fa-question-circle me-2 text-danger"></i><code>*ngIf</code> and <code>else</code></h4>
+                    <p *ngIf="isLeapYear; else notLeap" class="mb-0">
+                        <span class="badge text-bg-success me-2"><i class="fa fa-check me-1"></i>Leap year</span>
+                        2024 has 366 days.
+                    </p>
+                    <ng-template #notLeap>
+                        <p class="mb-0 text-muted">Not a leap year.</p>
+                    </ng-template>
+                </div>
+
+                <div class="border border-secondary-subtle rounded-3 p-3 bg-body-tertiary mb-4">
+                    <h4 class="h6 fw-bold mb-3"><i class="fa fa-list me-2 text-danger"></i><code>*ngFor</code></h4>
+                    <div class="table-responsive rounded-2 border bg-white">
+                        <table class="table table-sm table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col"><i class="fa fa-hashtag me-1 text-muted"></i>ID</th>
+                                    <th scope="col"><i class="fa fa-user me-1 text-muted"></i>Name</th>
+                                    <th scope="col"><i class="fa fa-envelope me-1 text-muted"></i>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let user of userList">
+                                    <td><span class="badge text-bg-secondary">{{ user.userId }}</span></td>
+                                    <td>{{ user.userName }}</td>
+                                    <td class="small text-muted">{{ user.userEmail }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="border border-secondary-subtle rounded-3 p-3 bg-body-tertiary">
+                    <h4 class="h6 fw-bold mb-2"><i class="fa fa-random me-2 text-danger"></i><code>[ngSwitch]</code></h4>
+                    <p class="small text-muted mb-3">Current value: <span class="badge text-bg-danger">{{ today }}</span></p>
+                    <div class="alert alert-light border mb-3 py-2" [ngSwitch]="today">
+                        <span *ngSwitchCase="'Monday'" class="mb-0"><i class="fa fa-coffee me-2 text-warning"></i>Start of the week.</span>
+                        <span *ngSwitchCase="'Tuesday'" class="mb-0"><i class="fa fa-bolt me-2 text-warning"></i>Tuesday.</span>
+                        <span *ngSwitchCase="'Wednesday'" class="mb-0"><i class="fa fa-calendar me-2 text-info"></i>Midweek.</span>
+                        <span *ngSwitchCase="'Thursday'" class="mb-0"><i class="fa fa-arrow-right me-2 text-primary"></i>Almost there.</span>
+                        <span *ngSwitchCase="'Friday'" class="mb-0"><i class="fa fa-star me-2 text-success"></i>Friday.</span>
+                        <span *ngSwitchCase="'Saturday'" class="mb-0"><i class="fa fa-sun me-2 text-warning"></i>Weekend.</span>
+                        <span *ngSwitchCase="'Sunday'" class="mb-0"><i class="fa fa-bed me-2 text-secondary"></i>Sunday.</span>
+                        <span *ngSwitchDefault class="mb-0 text-muted">Pick a day below.</span>
+                    </div>
+                    <div class="d-flex flex-wrap gap-2">
+                        <button *ngFor="let d of weekDays" type="button" class="btn btn-sm btn-outline-danger"
+                            (click)="changeDay(d)">{{ d }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Attribute directives -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">
+                    <i class="fa fa-paint-brush me-2 text-danger" aria-hidden="true"></i>3. Attribute directives:
+                    <code>ngClass</code> &amp; <code>ngStyle</code>
+                </h3>
+                <p class="mb-3">
+                    These directives change classes or inline styles from component state without structural changes.
+                </p>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="p-3 border rounded-3 h-100"
+                            [ngClass]="{ 'bg-warning-subtle border-warning': highlightRow(), 'bg-white': !highlightRow() }">
+                            <p class="fw-semibold mb-2"><code>ngClass</code></p>
+                            <p class="small mb-3">Toggle adds a Bootstrap-friendly background on this panel.</p>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" (click)="toggleHighlight()">
+                                <i class="fa fa-toggle-on me-1"></i>Toggle highlight
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 border rounded-3 bg-white h-100">
+                            <p class="fw-semibold mb-2"><code>ngStyle</code></p>
+                            <p class="mb-2" [ngStyle]="{ 'font-size.px': emphasisSize(), 'font-weight': '600' }">
+                                Adjustable font size ({{ emphasisSize() }}px).
+                            </p>
+                            <div class="btn-group btn-group-sm" role="group">
+                                <button type="button" class="btn btn-outline-danger" (click)="bumpFontSize(-2)"
+                                    aria-label="Smaller"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-outline-danger" (click)="bumpFontSize(2)"
+                                    aria-label="Larger"><i class="fa fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Structural vs control flow -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">
+                    <i class="fa fa-exchange me-2 text-danger" aria-hidden="true"></i>4. Classic <code>*</code> syntax vs
+                    control flow
+                </h3>
+                <p>
+                    Modern Angular supports <strong>&#64;if</strong>, <strong>&#64;for</strong>, <strong>&#64;switch</strong>,
+                    and <strong>&#64;empty</strong> for often clearer templates and good performance.
+                </p>
+                <ul class="mb-0">
+                    <li>Older tutorials use <code>*ngIf</code> / <code>*ngFor</code>; new code often prefers <code>&#64;if</code> / <code>&#64;for</code>.</li>
+                    <li>Both approaches are valid; learn both to read any codebase.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 5. Custom directives -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">
+                    <i class="fa fa-wrench me-2 text-danger" aria-hidden="true"></i>5. Custom directives
+                </h3>
+                <p class="mb-2">Build reusable behaviors with <code>&#64;Directive</code>:</p>
+                <ul class="mb-0">
+                    <li>Auto-focus, click-outside, copy-to-clipboard</li>
+                    <li>Permission-based <code>*appHasRole</code> structural directives</li>
+                    <li>Host listeners for hover, resize, or scroll</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 6. Styling note -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">
+                    <i class="fa fa-css3 me-2 text-danger" aria-hidden="true"></i>6. Styling in Angular
+                </h3>
+                <p>
+                    Use component styles, global styles, or attribute directives (<code>ngClass</code> / <code>ngStyle</code>)
+                    together with encapsulation to avoid leaking CSS.
+                </p>
+                <p class="mb-0">
+                    <a routerLink="/data-binding" class="btn btn-sm btn-outline-danger">
+                        <i class="fa fa-link me-1"></i>Data binding &amp; dynamic classes
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Nav -->
+        <div class="card section-card mb-4">
+            <div class="card-body d-flex flex-wrap gap-2 align-items-center">
+                <a routerLink="/angular-components" class="btn btn-danger"><i class="fa fa-arrow-left me-2"></i>Back to
+                    Components</a>
+            </div>
+        </div>
+
+    </div>
+
+</main>

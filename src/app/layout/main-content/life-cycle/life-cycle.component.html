@@ -1,0 +1,138 @@
+<main class="content">
+
+    <div class="content-card">
+
+        <app-page-title [pageTitle]="heading()" [pageSubtitle]="subHeading()">
+        </app-page-title>
+
+        <!-- 1. Introduction -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">1. What is the component lifecycle?</h3>
+                <p>
+                    Every Angular component goes through a <strong>predictable sequence</strong> from creation to
+                    destruction. At each step, Angular calls optional <strong>lifecycle hook methods</strong> on your
+                    class so you can react: load data, react to input changes, query the DOM, or clean up subscriptions.
+                </p>
+                <div class="highlight-box mb-0">
+                    <strong>Typical uses:</strong> fetch data in <code>ngOnInit</code>, integrate with third-party
+                    widgets
+                    in <code>ngAfterViewInit</code>, unsubscribe in <code>ngOnDestroy</code>.
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Order of hooks -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">2. Order of lifecycle hooks (simplified)</h3>
+                <p>After the class is constructed, Angular runs hooks in roughly this order:</p>
+                <ol class="mb-3">
+                    <li><code>ngOnChanges</code> — when an <code>&#64;Input()</code> value changes (not first run only;
+                        also on updates).</li>
+                    <li><code>ngOnInit</code> — once after first <code>ngOnChanges</code>; good place for one-time setup
+                        and initial data loads.</li>
+                    <li><code>ngDoCheck</code> — every change detection run; use sparingly (can affect performance).
+                    </li>
+                    <li><code>ngAfterContentInit</code> — after content projected with <code>ng-content</code> is
+                        initialized.</li>
+                    <li><code>ngAfterContentChecked</code> — after every check of projected content.</li>
+                    <li><code>ngAfterViewInit</code> — after the component’s view (and child views) are initialized;
+                        safe to use <code>&#64;ViewChild</code> references.</li>
+                    <li><code>ngAfterViewChecked</code> — after every view check.</li>
+                    <li><code>ngOnDestroy</code> — once before the component is destroyed; release timers,
+                        subscriptions,
+                        and listeners.</li>
+                </ol>
+                <p class="mb-0 text-muted small">
+                    You only implement the hooks you need; each must match the name Angular expects (for example
+                    <code>ngOnInit</code>, not <code>onInit</code>).
+                </p>
+            </div>
+        </div>
+
+        <!-- 3. Constructor vs ngOnInit -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">3. Constructor vs <code>ngOnInit</code></h3>
+                <ul>
+                    <li><strong>Constructor</strong> — use only for lightweight setup and dependency injection. Avoid
+                        heavy work or HTTP calls here.</li>
+                    <li><strong><code>ngOnInit</code></strong> — runs after inputs are set for the first time; preferred
+                        for initialization logic and loading data.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 4. Code example -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">4. Example: implementing common hooks</h3>
+                <p>
+                    Implement interfaces from <code>&#64;angular/core</code> (optional but helps TypeScript catch
+                    typos) and add the matching methods:
+                </p>
+                <div class="code-snippet">
+                    <pre><code>import &#123; Component, OnInit, OnDestroy, Input, OnChanges, SimpleChanges &#125; from '&#64;angular/core';
+
+&#64;Component(&#123;
+  selector: 'app-user-card',
+  templateUrl: './user-card.component.html',
+&#125;)
+export class UserCardComponent implements OnChanges, OnInit, OnDestroy &#123;
+  &#64;Input() userId = '';
+
+  ngOnChanges(changes: SimpleChanges): void &#123;
+    if (changes['userId']) &#123;
+      // React when userId input changes
+    &#125;
+  &#125;
+
+  ngOnInit(): void &#123;
+    // One-time setup, e.g. load data using this.userId
+  &#125;
+
+  ngOnDestroy(): void &#123;
+    // Unsubscribe, clear timers, detach listeners
+  &#125;
+&#125;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Live demo -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">5. Live demo on this page</h3>
+                <p>
+                    This route’s component implements a few hooks and appends messages below when they run. Navigate
+                    away to another page and open the browser <strong>Developer Tools → Console</strong> to see
+                    <code>ngOnDestroy</code> (the component is removed before the UI can show that message).
+                </p>
+                <div class="highlight-box mb-3">
+                    <div class="fw-bold mb-2">Hook log (this session)</div>
+                    @if (hookLog().length === 0) {
+                    <p class="mb-0 text-muted">Loading…</p>
+                    } @else {
+                    <ul class="hook-log mb-0">
+                        @for (line of hookLog(); track line) {
+                        <li>{{ line }}</li>
+                        }
+                    </ul>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Navigation -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">6. Continue learning</h3>
+                <p class="mb-3">Return to the Components topic or explore other sections from the sidebar.</p>
+                <a routerLink="/angular-components" class="btn btn-danger">Back to Components</a>
+            </div>
+        </div>
+
+    </div>
+
+</main>

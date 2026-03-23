@@ -9,5 +9,5 @@ import { PageTitleComponent } from "../../page-title/page-title.component";
 })
 export class OverviewComponent {
   heading = signal<string>('An Overview of Angular 19 Application');
-  subHeading = signal<string>('Learn Angular 19 Application over view & basics.');
+  subHeading = signal<string>('Learn Angular 19 with practical examples and references.');
 }

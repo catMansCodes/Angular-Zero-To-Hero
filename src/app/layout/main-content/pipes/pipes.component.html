@@ -1,0 +1,164 @@
+<main class="content">
+
+    <div class="content-card">
+
+        <app-page-title [pageTitle]="heading()" [pageSubtitle]="subHeading()">
+        </app-page-title>
+
+        <!-- 1. Overview -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">
+                    <i class="fa fa-filter me-2 text-danger" aria-hidden="true"></i>1. What are pipes?
+                </h3>
+                <p class="mb-2">
+                    <strong>Pipes</strong> transform data in the template for display without mutating the source value.
+                    Use the pipe character <code>|</code> followed by the pipe name and optional parameters.
+                </p>
+                <p class="mb-3 text-muted small">
+                    Typical syntax: <code>{{ syntaxPipe }}</code> — the table below shows live output for common pipes.
+                </p>
+                <div class="border border-secondary-subtle rounded-3 p-3 bg-body-tertiary" role="note">
+                    <div class="fw-semibold mb-2"><i class="fa fa-list me-2 text-danger"></i>Common built-in pipes</div>
+                    <ul class="mb-0 ps-3">
+                        <li><code>date</code>, <code>currency</code>, <code>decimal</code>, <code>percent</code></li>
+                        <li><code>uppercase</code>, <code>lowercase</code>, <code>titlecase</code>, <code>json</code></li>
+                        <li><code>async</code> — unwraps Observables and Promises</li>
+                        <li><strong>Custom pipes</strong> — implement <code>PipeTransform</code> for your own rules</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Built-in examples -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">
+                    <i class="fa fa-magic me-2 text-danger" aria-hidden="true"></i>2. Built-in pipe examples
+                </h3>
+                <p class="mb-3 text-muted small">
+                    These use Angular’s built-in pipes from <code>&#64;angular/common</code>.
+                </p>
+                <div class="table-responsive rounded-2 border">
+                    <table class="table table-sm table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">Pipe</th>
+                                <th scope="col">Expression</th>
+                                <th scope="col">Output</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>uppercase</code> / <code>lowercase</code></td>
+                                <td class="small font-monospace text-break">{{ demoText() }} | uppercase</td>
+                                <td><span class="badge text-bg-secondary">{{ demoText() | uppercase }}</span> /
+                                    <span class="badge text-bg-light border">{{ demoText() | lowercase }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><code>date</code></td>
+                                <td class="small font-monospace">| date:'medium'</td>
+                                <td>{{ demoDate() | date: 'medium' }}</td>
+                            </tr>
+                            <tr>
+                                <td><code>number</code> (decimal)</td>
+                                <td class="small font-monospace">| number:'1.2-2'</td>
+                                <td>{{ demoNumber() | number: '1.2-2' }}</td>
+                            </tr>
+                            <tr>
+                                <td><code>currency</code></td>
+                                <td class="small font-monospace">| currency:'USD'</td>
+                                <td>{{ demoPrice() | currency: 'USD' }}</td>
+                            </tr>
+                            <tr>
+                                <td><code>async</code></td>
+                                <td class="small font-monospace">observable$ | async</td>
+                                <td>{{ asyncDemo$ | async }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Pure vs impure -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">
+                    <i class="fa fa-tachometer me-2 text-danger" aria-hidden="true"></i>3. Pure vs impure pipes
+                </h3>
+                <p class="mb-2">
+                    By default pipes are <strong>pure</strong>: Angular runs them when a primitive input or object
+                    <em>reference</em> changes. <strong>Impure</strong> pipes run every change detection cycle—use
+                    sparingly.
+                </p>
+                <div class="border border-secondary-subtle rounded-3 p-3 bg-body-tertiary" role="note">
+                    <div class="fw-semibold mb-2"><i class="fa fa-check me-2 text-danger"></i>Guidance</div>
+                    <ul class="mb-0 ps-3">
+                        <li>Prefer <strong>pure</strong> pipes and immutable data for predictable performance.</li>
+                        <li>Use <strong>impure</strong> only when you must react to deep mutations (and measure cost).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Custom pipe -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">
+                    <i class="fa fa-wrench me-2 text-danger" aria-hidden="true"></i>4. Custom pipe: <code>currencyConvertor</code>
+                </h3>
+                <p class="mb-3 text-muted small">
+                    Base amount: <strong>{{ baseAmount() }}</strong> (multiply by configured INR rate; default rate 90 when
+                    no argument is passed).
+                </p>
+                <div class="table-responsive rounded-2 border">
+                    <table class="table table-sm align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">Scenario</th>
+                                <th scope="col">Template</th>
+                                <th scope="col">Result (INR)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1 unit × default rate (90)</td>
+                                <td class="small font-monospace">{{ syntaxCustomPipe }}</td>
+                                <td><span class="fw-semibold text-danger">{{ baseAmount() | currencyConvertor }}</span></td>
+                            </tr>
+                            <tr>
+                                <td>1 USD × 12</td>
+                                <td class="small font-monospace">| currencyConvertor:12</td>
+                                <td>{{ baseAmount() | currencyConvertor: 12 }}</td>
+                            </tr>
+                            <tr>
+                                <td>1 unit × 100</td>
+                                <td class="small font-monospace">| currencyConvertor:100</td>
+                                <td>{{ baseAmount() | currencyConvertor: 100 }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nav -->
+        <div class="card section-card mb-4">
+            <div class="card-body d-flex flex-wrap gap-2 align-items-center">
+                <a routerLink="/" class="btn btn-danger">
+                    <i class="fa fa-home me-2" aria-hidden="true"></i>Home
+                </a>
+                <a routerLink="/overview" class="btn btn-outline-danger">
+                    <i class="fa fa-dashboard me-2" aria-hidden="true"></i>Overview
+                </a>
+                <a routerLink="/directives" class="btn btn-outline-danger">
+                    <i class="fa fa-code me-2" aria-hidden="true"></i>Directives
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</main>

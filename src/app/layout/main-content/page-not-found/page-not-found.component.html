@@ -1,0 +1,54 @@
+<main class="content">
+    <div class="content-card">
+        <div class="card border-0 shadow-lg rounded-4 overflow-hidden mb-0 w-100">
+            <div class="bg-danger text-white text-center py-4 px-3">
+                <div class="display-1 fw-bold lh-1 mb-0 font-monospace">404</div>
+                <p class="mb-0 mt-2 small opacity-75 text-uppercase">Page not found</p>
+            </div>
+
+            <div class="card-body p-4 p-md-5 text-center bg-body-tertiary">
+                <div class="mb-4">
+                    <span
+                        class="d-inline-flex align-items-center justify-content-center rounded-circle bg-danger-subtle text-danger p-4 mb-3"
+                        aria-hidden="true">
+                        <i class="fa fa-compass fa-3x"></i>
+                    </span>
+                    <h2 class="h3 fw-bold text-body mb-2">This page doesn’t exist</h2>
+                    <p class="text-muted mb-0 px-sm-1">
+                        The URL may be mistyped, or the page was moved. Check the address or return to the
+                        learning app home.
+                    </p>
+                </div>
+
+                <div
+                    class="rounded-3 border border-secondary-subtle bg-white px-3 py-3 mb-4 text-start small font-monospace text-break w-100">
+                    <div class="text-muted text-uppercase small mb-1">
+                        <i class="fa fa-link me-1" aria-hidden="true"></i>Requested path
+                    </div>
+                    <span class="text-danger fw-semibold">{{ attemptedPath() }}</span>
+                </div>
+
+                <div
+                    class="d-flex flex-column flex-sm-row gap-2 gap-sm-3 justify-content-center align-items-stretch align-items-sm-center">
+                    <a routerLink="/"
+                        class="btn btn-danger btn-lg px-4 d-inline-flex align-items-center justify-content-center gap-2">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <span>Home</span>
+                    </a>
+                    <button type="button"
+                        class="btn btn-outline-secondary btn-lg px-4 d-inline-flex align-items-center justify-content-center gap-2"
+                        (click)="goBack()">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        <span>Go back</span>
+                    </button>
+                </div>
+
+                <p class="text-muted small mt-4 mb-0">
+                    <i class="fa fa-lightbulb me-1" aria-hidden="true"></i>
+                    Tip: use the sidebar to open topics like <strong>Overview</strong> or
+                    <strong>Components</strong>.
+                </p>
+            </div>
+        </div>
+    </div>
+</main>

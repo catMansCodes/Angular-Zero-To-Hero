@@ -1,0 +1,153 @@
+<main class="content">
+
+    <div class="content-card">
+
+        <app-page-title [pageTitle]="heading()" [pageSubtitle]="subHeading()">
+        </app-page-title>
+
+        <!-- 1. Overview -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">1. What is data binding?</h3>
+                <p class="mb-2">
+                    <strong>Data binding</strong> keeps your template in sync with the component class. Angular supports:
+                </p>
+                <ul class="mb-3">
+                    <li><strong>Interpolation</strong> — <code>{{ syntax.interpolation }}</code></li>
+                    <li><strong>Property binding</strong> — <code>{{ syntax.property }}</code> (DOM properties, directives,
+                        <code>[attr.name]</code>, <code>[class]</code>, <code>[style]</code>)</li>
+                    <li><strong>Event binding</strong> — <code>{{ syntax.event }}</code></li>
+                    <li><strong>Two-way binding</strong> — <code>{{ syntax.twoWay }}</code> (forms; needs
+                        <code>FormsModule</code>)</li>
+                </ul>
+                <div class="highlight-box mb-0 small">
+                    Styling below uses <strong>Bootstrap 5</strong> utility classes only (e.g. <code>btn</code>,
+                    <code>alert</code>, <code>bg-dark</code>).
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Interpolation -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">2. Interpolation</h3>
+                <p class="text-muted small mb-3">Display component properties in the template with double curly braces.</p>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="p-3 bg-light rounded border">
+                            <div class="text-uppercase text-muted small mb-1">Title</div>
+                            <div class="fw-semibold">{{ bookTitle }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-light rounded border">
+                            <div class="text-uppercase text-muted small mb-1">Author</div>
+                            <div class="fw-semibold">{{ author }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-light rounded border">
+                            <div class="text-uppercase text-muted small mb-1">Price</div>
+                            <div class="fw-semibold">{{ displayPrice }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Property binding -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">3. Property binding</h3>
+                <p class="text-muted small mb-3">Square brackets bind a template expression to a property on the host
+                    element.</p>
+
+                <div class="row g-4 align-items-start">
+                    <div class="col-lg-4">
+                        <div class="small text-muted mb-2"><code>[value]</code> — one-way into the input</div>
+                        <input class="form-control" type="text" [value]="bookTitle" readonly />
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="small text-muted mb-2"><code>[class]</code> — Bootstrap alert classes</div>
+                        <div [class]="alertClasses" role="alert">Success state via bound class string.</div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="small text-muted mb-2"><code>[type]</code> — toggle native input type</div>
+                        <div class="d-flex flex-column gap-2">
+                            <input class="form-check-input" [type]="inputType" id="typeDemo" />
+                            <label class="form-check-label small" for="typeDemo">Current type: <code>{{ inputType }}</code></label>
+                            <button type="button" class="btn btn-outline-secondary btn-sm align-self-start"
+                                (click)="toggleInputType()">Toggle type</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="small text-muted mb-2"><code>[class]</code> — theme panel (Bootstrap utilities)</div>
+                    <div [class]="panelClasses">
+                        <p class="mb-0">This block’s colors come from a bound string of Bootstrap classes. Use
+                            <strong>Light</strong> / <strong>Dark</strong> below.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Event binding -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">4. Event binding</h3>
+                <p class="text-muted small mb-3">Parentheses wire DOM events to component methods.</p>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-success w-100" (click)="showWelcome()">(click) — alert</button>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="d-grid gap-2 d-md-flex">
+                            <button type="button" class="btn btn-dark flex-fill"
+                                (click)="setPanelTheme('dark')">Dark panel</button>
+                            <button type="button" class="btn btn-light border flex-fill"
+                                (click)="setPanelTheme('light')">Light panel</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-danger w-100" (click)="setDisplayPriceTo500()">Set price to
+                            500</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Two-way binding -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">5. Two-way binding with <code>[(ngModel)]</code></h3>
+                <p class="text-muted small mb-3">Combines property + event binding for form controls. Import
+                    <code>FormsModule</code> in this component.</p>
+                <div class="row g-3 align-items-center">
+                    <div class="col-md-6">
+                        <label class="form-label small mb-1" for="bookNameInput">Book name</label>
+                        <input id="bookNameInput" class="form-control" type="text" [(ngModel)]="bookName"
+                            [ngModelOptions]="{ standalone: true }" />
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light rounded border h-100 d-flex align-items-center">
+                            <span class="small text-muted me-2">Live value:</span>
+                            <span class="fw-semibold">{{ bookName }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Navigation -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">6. Continue learning</h3>
+                <p class="mb-3">Return to the Components topic or use the sidebar.</p>
+                <a routerLink="/angular-components" class="btn btn-danger">Back to Components</a>
+            </div>
+        </div>
+
+    </div>
+
+</main>

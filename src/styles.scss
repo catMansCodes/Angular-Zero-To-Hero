@@ -107,43 +107,69 @@
     margin: 0;
   }
   
+  /* Nav item: no extra padding on <li> — hover/active/focus all target the <a> so size matches */
   .sidebar-menu li {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 6px 4px;
+    align-items: stretch;
+    justify-content: stretch;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
     cursor: pointer;
   }
   
-  .sidebar-menu li:hover:not(.disabled),
-  .sidebar-menu li.active {
-    background: var(--color-nav-hover);
-    border-radius: 5px;
+  .sidebar-menu li.disabled {
+    cursor: not-allowed;
   }
   
-  .nav-vertical {
+  /* One box for icon + label: same padding, min-height, and radius for hover / :focus-visible / .active */
+  .sidebar .nav-link.nav-vertical {
     display: flex;
-    flex-direction: column; /* icon on top, text below */
-    align-items: center; /* center horizontally */
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    gap: 4px; /* space between icon & text */
-    padding: 8px 0;
+    gap: 4px;
+    width: 100%;
+    min-height: 72px;
+    padding: 10px 8px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    text-decoration: none;
+    color: inherit;
+    /* Reset Bootstrap .nav-link horizontal padding so width matches hover highlight */
+    --bs-nav-link-padding-x: 8px;
+    --bs-nav-link-padding-y: 10px;
   }
   
-  .nav-vertical i {
+  .sidebar .nav-link.nav-vertical i {
     font-size: 16px;
     color: var(--angular-red);
   }
   
-  .nav-vertical span {
+  .sidebar .nav-link.nav-vertical span {
     font-size: 13px;
     font-family: var(--font-lato);
     font-weight: 700;
     color: var(--angular-red);
   }
   
-  .nav-vertical.active {
+  .sidebar .nav-link.nav-vertical:hover:not(.disabled),
+  .sidebar .nav-link.nav-vertical:focus-visible,
+  .sidebar .nav-link.nav-vertical.nav-link-focus,
+  .sidebar .nav-link.nav-vertical.active {
     background: var(--color-nav-hover);
+    color: inherit;
+  }
+  
+  .sidebar .nav-link.nav-vertical:focus-visible,
+  .sidebar .nav-link.nav-vertical.nav-link-focus {
+    outline: 2px solid var(--angular-red);
+    outline-offset: 0;
+  }
+  
+  .sidebar .nav-link.nav-vertical.active {
+    box-shadow: inset 3px 0 0 var(--angular-red);
   }
   
   /* =========================================================

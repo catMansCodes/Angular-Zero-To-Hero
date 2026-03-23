@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { PageTitleComponent } from '../../page-title/page-title.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-angular-components',
-  imports: [PageTitleComponent],
+  imports: [PageTitleComponent,RouterLink],
   templateUrl: './angular-components.component.html',
   styleUrl: './angular-components.component.scss',
 })

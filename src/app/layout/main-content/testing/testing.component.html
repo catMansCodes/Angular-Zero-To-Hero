@@ -1,0 +1,149 @@
+<main class="content">
+
+    <div class="content-card">
+
+        <app-page-title [pageTitle]="heading()" [pageSubtitle]="subHeading()">
+        </app-page-title>
+
+        <!-- 1. Unit testing -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">
+                    <i class="fa fa-flask me-2 text-danger" aria-hidden="true"></i>1. Unit testing with Jasmine &amp; Karma
+                </h3>
+                <p class="mb-2">
+                    <strong>Unit tests</strong> exercise small pieces of code in isolation—functions, pipes, services, or
+                    component classes—so regressions show up before merge.
+                </p>
+                <p class="mb-3 text-muted small">
+                    <strong>Jasmine</strong> describes specs and expectations; <strong>Karma</strong> runs them in real
+                    browsers (or headless Chrome) via the Angular CLI.
+                </p>
+                <div class="border border-secondary-subtle rounded-3 p-3 bg-body-tertiary" role="note">
+                    <div class="fw-semibold mb-2"><i class="fa fa-thumbs-up me-2 text-danger"></i>Why it matters</div>
+                    <ul class="mb-0 ps-3">
+                        <li>Catches bugs close to where they’re introduced.</li>
+                        <li>Gives confidence when refactoring.</li>
+                        <li>Documents expected behavior for the next developer.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Component testing -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">
+                    <i class="fa fa-cube me-2 text-danger" aria-hidden="true"></i>2. Component testing
+                </h3>
+                <p class="mb-2">
+                    Use <code>TestBed</code> to create a component fixture, trigger change detection, and query the DOM.
+                    You verify bindings, outputs, and how the template reacts to state.
+                </p>
+                <p class="mb-3 text-muted small">
+                    Prefer testing through the public API (inputs, buttons, emitted events) rather than private fields.
+                </p>
+                <div class="border border-secondary-subtle rounded-3 p-3 bg-body-tertiary" role="note">
+                    <div class="fw-semibold mb-2"><i class="fa fa-list-ul me-2 text-danger"></i>Typical checks</div>
+                    <ul class="mb-0 ps-3">
+                        <li>Class and template logic with <code>fixture.detectChanges()</code>.</li>
+                        <li><code>&#64;Input()</code> / <code>&#64;Output()</code> behavior.</li>
+                        <li>User flows: click, type, <code>fakeAsync</code> / <code>tick()</code> when timing matters.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Service & HTTP -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">
+                    <i class="fa fa-plug me-2 text-danger" aria-hidden="true"></i>3. Service testing &amp; HTTP mocking
+                </h3>
+                <p class="mb-2">
+                    Inject services with <code>TestBed.inject()</code> or the component’s injector. For
+                    <code>HttpClient</code>, use <strong><code>HttpClientTestingModule</code></strong> and
+                    <strong><code>HttpTestingController</code></strong> to assert URLs, methods, and bodies without real
+                    HTTP.
+                </p>
+                <p class="mb-3 text-muted small">
+                    Flush pending requests in each test so the next spec doesn’t see leaked calls.
+                </p>
+                <div class="border border-secondary-subtle rounded-3 p-3 bg-body-tertiary" role="note">
+                    <div class="fw-semibold mb-2"><i class="fa fa-exchange me-2 text-danger"></i>Common scenarios</div>
+                    <ul class="mb-0 ps-3">
+                        <li>Mock success and error responses.</li>
+                        <li>Assert headers, query params, and payloads.</li>
+                        <li>Test retry or timeout logic deterministically.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. E2E -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">
+                    <i class="fa fa-globe me-2 text-danger" aria-hidden="true"></i>4. End-to-end (E2E) testing
+                </h3>
+                <p class="mb-2">
+                    E2E tests drive the app like a user: load pages, click, fill forms, and assert visible outcomes. They
+                    validate routing, lazy loading, and integration between layers.
+                </p>
+                <p class="mb-3 text-muted small">
+                    Teams often use Cypress or Playwright; keep E2E suites smaller and focused on critical journeys.
+                </p>
+                <div class="border border-secondary-subtle rounded-3 p-3 bg-body-tertiary" role="note">
+                    <div class="fw-semibold mb-2"><i class="fa fa-road me-2 text-danger"></i>Good candidates</div>
+                    <ul class="mb-0 ps-3">
+                        <li>Login and checkout flows.</li>
+                        <li>Main navigation and deep links.</li>
+                        <li>Features that many unit tests would duplicate awkwardly.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Coverage -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">
+                    <i class="fa fa-pie-chart me-2 text-danger" aria-hidden="true"></i>5. Coverage &amp; practices
+                </h3>
+                <p class="mb-2">
+                    <strong>Coverage</strong> reports show which lines branches were executed. Use them as a guide—not a
+                    goal by itself. Meaningful assertions on business rules beat empty “line touched” tests.
+                </p>
+                <p class="mb-3 text-muted small">
+                    Run <code>ng test --code-coverage</code> (or your CI job) and review HTML reports for untested
+                    branches.
+                </p>
+                <div class="border border-secondary-subtle rounded-3 p-3 bg-body-tertiary" role="note">
+                    <div class="fw-semibold mb-2"><i class="fa fa-lightbulb me-2 text-danger"></i>Habits that help</div>
+                    <ul class="mb-0 ps-3">
+                        <li>Cover critical paths and edge cases first.</li>
+                        <li>Keep tests independent and fast (no shared mutable globals).</li>
+                        <li>Avoid brittle selectors; prefer stable roles, labels, or test ids.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nav -->
+        <div class="card section-card mb-4">
+            <div class="card-body d-flex flex-wrap gap-2 align-items-center">
+                <a routerLink="/" class="btn btn-danger">
+                    <i class="fa fa-home me-2" aria-hidden="true"></i>Home
+                </a>
+                <a routerLink="/overview" class="btn btn-outline-danger">
+                    <i class="fa fa-dashboard me-2" aria-hidden="true"></i>Overview
+                </a>
+                <a routerLink="/build-deploy" class="btn btn-outline-danger">
+                    <i class="fa fa-rocket me-2" aria-hidden="true"></i>Build &amp; deploy
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</main>
