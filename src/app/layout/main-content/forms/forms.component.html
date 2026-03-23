@@ -1,1 +1,143 @@
-<p>forms works!</p>
+<main class="content">
+
+    <div class="content-card">
+
+        <app-page-title [pageTitle]="heading()" [pageSubtitle]="subHeading()">
+        </app-page-title>
+
+        <!-- 1. Template-driven forms -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">
+                    <i class="fa fa-edit me-2 text-danger" aria-hidden="true"></i>1. Template-driven forms
+                </h3>
+                <p class="mb-2">
+                    Template-driven forms define behavior mostly in the template using directives like
+                    <code>ngModel</code>. They are ideal for small forms with simple validation rules.
+                </p>
+                <div class="border border-secondary-subtle rounded-3 p-3 bg-body-tertiary" role="note">
+                    <div class="fw-semibold mb-2"><i class="fa fa-list me-2 text-danger"></i>Best fit</div>
+                    <ul class="mb-0 ps-3">
+                        <li>Fast setup for small forms</li>
+                        <li>Readable HTML-centric logic</li>
+                        <li>Lower ceremony for basic inputs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Reactive forms -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">
+                    <i class="fa fa-code me-2 text-danger" aria-hidden="true"></i>2. Reactive forms
+                </h3>
+                <p class="mb-2">
+                    Reactive forms are model-driven: you declare <code>FormGroup</code>, <code>FormControl</code>, and
+                    validators in TypeScript for explicit state and testability.
+                </p>
+                <div class="border border-secondary-subtle rounded-3 p-3 bg-body-tertiary" role="note">
+                    <div class="fw-semibold mb-2"><i class="fa fa-check-square me-2 text-danger"></i>Why teams choose it</div>
+                    <ul class="mb-0 ps-3">
+                        <li>Predictable form state transitions</li>
+                        <li>Great for complex and dynamic forms</li>
+                        <li>Easier unit testing of validation logic</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Validation -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">
+                    <i class="fa fa-shield me-2 text-danger" aria-hidden="true"></i>3. Validation (built-in &amp; custom)
+                </h3>
+                <p class="mb-2">
+                    Angular includes built-in validators (<code>required</code>, <code>email</code>,
+                    <code>minLength</code>, <code>pattern</code>) and supports custom validators for domain rules.
+                </p>
+                <ul class="mb-0">
+                    <li>Show errors after touched/dirty, not on first paint</li>
+                    <li>Reuse custom validators across forms</li>
+                    <li>Keep validation messages short and actionable</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 4. Dynamic forms -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">
+                    <i class="fa fa-cogs me-2 text-danger" aria-hidden="true"></i>4. Dynamic forms
+                </h3>
+                <p class="mb-2">
+                    Dynamic forms are generated from metadata (often API-driven), so field sets can change without
+                    redeploying templates.
+                </p>
+                <div class="border border-secondary-subtle rounded-3 p-3 bg-body-tertiary" role="note">
+                    <ul class="mb-0 ps-3">
+                        <li>Runtime form control creation</li>
+                        <li>Config-driven labels, validators, and types</li>
+                        <li>Useful for admin panels and survey builders</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Form arrays -->
+        <div class="card section-card mb-4">
+            <div class="card-body">
+                <h3 class="section-title">
+                    <i class="fa fa-th-list me-2 text-danger" aria-hidden="true"></i>5. Form arrays &amp; nested forms
+                </h3>
+                <p class="mb-2">
+                    Use <code>FormArray</code> for repeatable groups (skills, addresses, line items) and nested
+                    <code>FormGroup</code> structures for complex object graphs.
+                </p>
+                <ul class="mb-0">
+                    <li>Handles variable-length sections cleanly</li>
+                    <li>Supports wizard and multi-step flows</li>
+                    <li>Maps well to nested backend payloads</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 6. Working demos -->
+        <div class="card section-card mb-4 border-danger border-opacity-25">
+            <div class="card-body">
+                <h3 class="section-title">
+                    <i class="fa fa-play-circle me-2 text-danger" aria-hidden="true"></i>6. Working employee form demos
+                </h3>
+                <p class="text-muted small mb-3">
+                    Both demos below are wired and working with the employee API.
+                </p>
+                <div class="d-flex flex-wrap gap-2">
+                    <a routerLink="/reactive-form-employee" class="btn btn-danger">
+                        <i class="fa fa-code me-1" aria-hidden="true"></i>Open Reactive Form Demo
+                    </a>
+                    <a routerLink="/template-form-employee" class="btn btn-outline-danger">
+                        <i class="fa fa-list-alt me-1" aria-hidden="true"></i>Open Template Form Demo
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nav -->
+        <div class="card section-card mb-4">
+            <div class="card-body d-flex flex-wrap gap-2 align-items-center">
+                <a routerLink="/" class="btn btn-danger">
+                    <i class="fa fa-home me-2" aria-hidden="true"></i>Home
+                </a>
+                <a routerLink="/overview" class="btn btn-outline-danger">
+                    <i class="fa fa-dashboard me-2" aria-hidden="true"></i>Overview
+                </a>
+                <a routerLink="/service-di" class="btn btn-outline-danger">
+                    <i class="fa fa-plug me-2" aria-hidden="true"></i>Service &amp; DI
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</main>

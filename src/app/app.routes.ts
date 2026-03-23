@@ -16,6 +16,9 @@ import { StateComponent } from './layout/main-content/state/state.component';
 import { TestingComponent } from './layout/main-content/testing/testing.component';
 import { BuildDeployComponent } from './layout/main-content/build-deploy/build-deploy.component';
 import { FormsComponent } from './layout/main-content/forms/forms.component';
+import { ReactiveFormEmployeeComponent } from './layout/main-content/forms/reactive-form-employee/reactive-form-employee.component';
+import { TemplateFormEmployeeComponent } from './layout/main-content/forms/template-form-employee/template-form-employee.component';
+import { ProfileDemoComponent } from './layout/main-content/profile-demo/profile-demo.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -28,18 +31,20 @@ export const routes: Routes = [
     { path: 'pipes', component: PipesComponent },
     { path: 'signals', component: SignalsComponent },
     { path: 'routing', component: RoutingComponent },
-    
+    { path: 'profile/:id/:name', component: ProfileDemoComponent },
+    { path: 'profile', component: ProfileDemoComponent },
+
     { path: 'forms', component: FormsComponent },
-    
+    { path: 'reactive-form-employee', component: ReactiveFormEmployeeComponent },
+    { path: 'template-form-employee', component: TemplateFormEmployeeComponent },
+
     { path: 'service-di', component: ServiceDiComponent },
-    
     { path: 'apis', component: ApisComponent },
-    
     { path: 'performance', component: PerformanceComponent },
     { path: 'state', component: StateComponent },
     { path: 'testing', component: TestingComponent },
     { path: 'build-deploy', component: BuildDeployComponent },
 
-    //keep this in last so it will no disturb other match
+    // keep this last so it doesn't disturb other matches
     { path: '**', component: PageNotFoundComponent },
 ];
