@@ -6,7 +6,6 @@ import { RouterLink } from '@angular/router';
   selector: 'app-angular-components',
   imports: [PageTitleComponent,RouterLink],
   templateUrl: './angular-components.component.html',
-  styleUrl: './angular-components.component.scss',
 })
 export class AngularComponentsComponent {
   heading = signal<string>(
