@@ -5,7 +5,6 @@ import { PageTitleComponent } from "../../page-title/page-title.component";
   selector: 'app-home',
   imports: [PageTitleComponent],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
 })
 export class HomeComponent {
   heading = signal<string>('Angular Zero To Hero with version 19');

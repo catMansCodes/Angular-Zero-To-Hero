@@ -7,7 +7,6 @@ import { FooterComponent } from './footer/footer.component';
 @Component({
   selector: 'app-root',
   imports: [HeaderComponent, LayoutComponent, FooterComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  templateUrl: './app.component.html'
 })
 export class AppComponent {}
