@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"d:\\\\Study\\\\env\\\\repo\\\\01-Frontend-Repo\\\\Angular-Repo\\\\Angular-Zero-To-Hero\" -Force)"
+    ]
+  }
+}
