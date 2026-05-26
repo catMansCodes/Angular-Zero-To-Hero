@@ -5,7 +5,6 @@ import { PageTitleComponent } from "../../page-title/page-title.component";
   selector: 'app-overview',
   imports: [PageTitleComponent],
   templateUrl: './overview.component.html',
-  styleUrl: './overview.component.scss',
 })
 export class OverviewComponent {
   heading = signal<string>('An Overview of Angular 19 Application');
